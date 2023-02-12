@@ -1,0 +1,84 @@
+query getAllUsers{usersGetAll{name,posts{title,content,comments{content}}}}
+
+
+mutation createUser{
+  userCreate(input:{name:"Hussein1",email:"hussein1@gmail.com",password:"12345"}){
+    name
+    email
+  }
+}
+
+mutation loginUser{
+  userLogin(email:"hussein@gmail.com",password:"12345")
+}
+
+
+mutation createPost{
+  postCreate(title:"post three",content:"post three create",
+    token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTM4MzdhNjA3ZTBhYzUwNjc2MGMiLCJpYXQiOjE2NzYyMTExMDN9.wFBnFtLaKHqAy3bM0A3d4fUvCuSaTV4x8eHzPZkq3ns")
+}
+
+
+query getOnePost{
+  getOnePost(token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTQ3ZmE1MmUwMTA5YWE0YmRhMTYiLCJpYXQiOjE2NzYyMDg1NzZ9.XaaXpAGUdBToBznzzq4Kw-U3DDBujZlRvwBYxmhUWfw",
+    postId:"63e8eeffa52e0109aa4bda1f"){
+    title
+    content
+    comments{
+      content
+    }
+  }
+}
+
+
+mutation updatePost{
+  updatePost( postId:"63e8ea41a52e0109aa4bda1c",
+    token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTQ3ZmE1MmUwMTA5YWE0YmRhMTYiLCJpYXQiOjE2NzYyMDg1NzZ9.XaaXpAGUdBToBznzzq4Kw-U3DDBujZlRvwBYxmhUWfw",
+    title:"update post",content:"updated post")
+}
+
+
+mutation deletePost{
+  deletePost(token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTQ3ZmE1MmUwMTA5YWE0YmRhMTYiLCJpYXQiOjE2NzYyMDg1NzZ9.XaaXpAGUdBToBznzzq4Kw-U3DDBujZlRvwBYxmhUWfw"
+    ,postId:"63e8ea41a52e0109aa4bda1c")
+}
+
+
+# mutation createComment{createComment(token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTM4MzdhNjA3ZTBhYzUwNjc2MGMiLCJpYXQiOjE2NzYyMTExMDN9.wFBnFtLaKHqAy3bM0A3d4fUvCuSaTV4x8eHzPZkq3ns",
+#    postId:"63e8f3b9bc7fdbbb0a1c6ec0",content:"third comment"){
+#     content,postId,userId
+#   }
+# }
+
+mutation createComment{createComment(token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTQ3ZmE1MmUwMTA5YWE0YmRhMTYiLCJpYXQiOjE2NzYyMDg1NzZ9.XaaXpAGUdBToBznzzq4Kw-U3DDBujZlRvwBYxmhUWfw",
+  postId:"63e8eeffa52e0109aa4bda1f",
+  content:"new comment")
+  }
+
+  
+query getOneComment{
+    getComment(token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTQ3ZmE1MmUwMTA5YWE0YmRhMTYiLCJpYXQiOjE2NzYyMDg1NzZ9.XaaXpAGUdBToBznzzq4Kw-U3DDBujZlRvwBYxmhUWfw", postId:"63e8ea41a52e0109aa4bda1c",commentId:"63e8f0fea52e0109aa4bda2e"){
+      content,
+      postId{
+        title,
+        content
+      },
+      userId{
+        name
+      }
+    }
+  }
+  
+  
+  query getAllComment{
+    getAllComments(token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4ZTQ3ZmE1MmUwMTA5YWE0YmRhMTYiLCJpYXQiOjE2NzYyMDg1NzZ9.XaaXpAGUdBToBznzzq4Kw-U3DDBujZlRvwBYxmhUWfw", postId:"63e8ea41a52e0109aa4bda1c"){
+      content,
+      postId{
+        title,
+        content
+      },
+      userId{
+        name
+      }
+    }
+  }

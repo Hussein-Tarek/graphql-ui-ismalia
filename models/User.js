@@ -20,8 +20,8 @@ const userSchema = new Schema({
 
 },
 {
-		toJSON: { virtuals: true },
-		toObject: { virtuals: true }
+	toJSON: { virtuals: true },
+	toObject: { virtuals: true }
 });
 
 userSchema.virtual('posts', {
@@ -29,6 +29,11 @@ userSchema.virtual('posts', {
 	foreignField: 'userId',
 	localField: '_id'
 });
+userSchema.virtual("comments", {
+	ref: "Comment",
+	foreignField: "userId",
+	localField: "_id",
+	});
 
 const User = mongoose.model('User',userSchema);
 module.exports = User;
